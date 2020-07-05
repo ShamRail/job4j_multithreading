@@ -1,4 +1,4 @@
-package ru.job4j.sync;
+package ru.job4j.common;
 
 public final class Cache {
 

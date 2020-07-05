@@ -1,4 +1,4 @@
-package ru.job4j.sync;
+package ru.job4j.common;
 
 public class Flag {
     private static volatile boolean flag = true;
