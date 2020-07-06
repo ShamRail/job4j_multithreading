@@ -30,7 +30,8 @@ public class UserStorage {
     }
 
     public synchronized User findById(int id) {
-        return users.get(id);
+        User user = users.get(id);
+        return user == null ? null : new User(user.getId(), user.getAmount());
     }
 
     public synchronized boolean transfer(int fromId, int toId, int amount) {
