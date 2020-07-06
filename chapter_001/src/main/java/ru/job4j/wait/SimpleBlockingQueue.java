@@ -56,7 +56,7 @@ public class SimpleBlockingQueue<T> {
         return queue.size();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<>(5);
         Thread[] producers = new Thread[10];
         for (int i = 0; i < producers.length; i++) {
@@ -80,5 +80,4 @@ public class SimpleBlockingQueue<T> {
             producers[i].start();
         }
     }
-
 }
