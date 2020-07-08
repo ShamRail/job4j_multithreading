@@ -14,7 +14,7 @@ public class SimpleBlockingQueue<T> {
 
     private final Object monitor = this;
 
-    private int bound;
+    private final int bound;
 
     public SimpleBlockingQueue(int bound) {
         this.bound = bound;
@@ -36,8 +36,8 @@ public class SimpleBlockingQueue<T> {
     }
 
     public T poll() {
-        T result = null;
         synchronized (monitor) {
+            T result = null;
             try {
                 while (queue.isEmpty()) {
                     System.out.printf("%s wait%n", Thread.currentThread().getName());
@@ -48,8 +48,8 @@ public class SimpleBlockingQueue<T> {
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
+            return result;
         }
-        return result;
     }
 
     public synchronized int size() {
