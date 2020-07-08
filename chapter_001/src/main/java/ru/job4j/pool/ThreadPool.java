@@ -13,10 +13,6 @@ public class ThreadPool {
 
     private final SimpleBlockingQueue<Runnable> tasks = new SimpleBlockingQueue<>(poolSize);;
 
-    public ThreadPool() {
-        this.initPool();
-    }
-
     private void initPool() {
         for (int i = 0; i < poolSize; i++) {
             pool.add(new Thread(() -> {
@@ -33,6 +29,9 @@ public class ThreadPool {
     }
 
     public void work(Runnable job) {
+        if (pool.isEmpty()) {
+            initPool();
+        }
         tasks.offer(job);
     }
 
