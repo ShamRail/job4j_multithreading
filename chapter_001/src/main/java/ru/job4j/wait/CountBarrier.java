@@ -13,22 +13,19 @@ public class CountBarrier {
     }
 
     public void count() {
-        count++;
+        synchronized (monitor) {
+            count++;
+            notifyAll();
+        }
     }
 
     public void await() {
         synchronized (monitor) {
             try {
                 count();
-                if (count < total) {
+                while (count < total) {
                     System.out.println(String.format("%s wait", Thread.currentThread().getName()));
                     wait();
-                } else {
-                    count = 0;
-                    System.out.println();
-                    System.out.println("Starting all threads");
-                    System.out.println();
-                    notifyAll();
                 }
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
