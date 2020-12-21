@@ -46,7 +46,7 @@ public class FileDownload {
                 }
                 long end = System.currentTimeMillis();
                 System.out.printf("Time: %.2f", ((double) (end - start)) / 1000);
-            } catch (Exception e){
+            } catch (Exception e) {
                 Thread.currentThread().interrupt();
                 e.printStackTrace();
             }
